@@ -92,17 +92,6 @@ Instead of writing each CV section repeatedly in HTML, the information is stored
 
 Django then uses the template to generate the corresponding HTML page.
 
-The basic data flow is:
-
-    views.py
-        ↓
-    context dictionary
-        ↓
-    cv.html
-        ↓
-    Django Template
-        ↓
-    Rendered CV webpage
 
 ## Technologies Used
 
