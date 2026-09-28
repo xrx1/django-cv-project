@@ -6,6 +6,7 @@ This project converts my CV into a web page using Django and Django Templates.
 
 A short demo video of the Django CV website is included below.
 
+https://github.com/user-attachments/assets/c5631079-9746-4f4a-bede-4250428bf760
 
 ## Project Overview
 
