@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ name }} - CV</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef1f5;
+            color: #273142;
+            line-height: 1.6;
+        }
+
+        .page {
+            display: flex;
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        /* LEFT SIDEBAR */
+
+        .sidebar {
+            width: 280px;
+            background: #172033;
+            color: white;
+            padding: 40px 28px;
+
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            align-self: flex-start;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #4f7cff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .profile h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .profile p {
+            color: #b8c1d1;
+            font-size: 16px;
+        }
+
+        .sidebar-section h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #39445a;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-section p {
+            font-size: 16px;
+            color: #d3d9e4;
+        }
+
+        .skill {
+            display: inline-block;
+            background: #293650;
+            border-radius: 15px;
+            padding: 6px 12px;
+            margin: 4px 3px;
+            font-size: 14px;
+        }
+
+
+        /* MAIN CONTENT */
+
+        .content {
+            flex: 1;
+            padding: 50px;
+        }
+
+        .intro {
+            margin-bottom: 45px;
+        }
+
+        .intro h1 {
+            font-size: 38px;
+            margin: 0;
+            color: #172033;
+        }
+
+        .intro p {
+            color: #687386;
+            margin-top: 8px;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 22px;
+            color: #172033;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: #dfe3e8;
+        }
+
+        /* TIMELINE */
+
+        .timeline {
+            position: relative;
+            padding-left: 25px;
+            border-left: 2px solid #dfe5ef;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -33px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #4f7cff;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #4f7cff;
+        }
+
+        .timeline-item h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #172033;
+        }
+
+        .company {
+            color: #4f7cff;
+            font-weight: bold;
+        }
+
+        .date {
+            float: right;
+            color: #8993a4;
+            font-size: 13px;
+        }
+
+        .timeline-item p {
+            color: #687386;
+            font-size: 14px;
+        }
+
+        .timeline-item ul {
+            padding-left: 20px;
+            color: #536072;
+        }
+
+        .timeline-item li {
+            margin-bottom: 6px;
+        }
+
+
+        .work-project {
+            margin-top: 20px;
+            padding: 18px 20px;
+            background: #f8f9fc;
+            border-left: 3px solid #4f7cff;
+            border-radius: 6px;
+        }
+
+        .work-project h4 {
+            margin: 0 0 3px 0;
+            font-size: 16px;
+            color: #172033;
+        }
+
+        .project-role {
+            margin: 0 0 10px 0;
+            color: #4f7cff;
+            font-size: 13px;
+            font-style: italic;
+        }
+
+        /* PROJECT CARDS */
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            padding: 22px;
+            border: 1px solid #e1e5eb;
+            border-radius: 10px;
+            background: #fafbfc;
+            transition: 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-card h3 {
+            margin-top: 0;
+            color: #172033;
+        }
+
+        .project-card .date {
+            float: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .project-card ul {
+            padding-left: 18px;
+            color: #5c6676;
+            font-size: 14px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .page {
+                margin: 0;
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .date {
+                float: none;
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+<div class="page">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="profile">
+
+            <div class="avatar">
+                RX
+            </div>
+
+            <h1>{{ name }}</h1>
+
+            <p>Computer Science Student</p>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <h2>Contact</h2>
+
+            <p>📧 {{ email }}</p>
+
+            <p>📱 {{ phone }}</p>
+
+            <p>📍 {{ location }}</p>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <h2>Skills</h2>
+
+            {% for skill in skills %}
+                <span class="skill">{{ skill }}</span>
+            {% endfor %}
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="content">
+
+        <div class="intro">
+
+            <h1>Curriculum Vitae</h1>
+
+            <p>
+                Data Scientist · Computer Science · Data Engineering
+            </p>
+
+        </div>
+
+
+        <!-- EDUCATION -->
+
+        <section class="section">
+
+            <div class="section-title">
+                <h2>Education</h2>
+                <div class="section-line"></div>
+            </div>
+
+
+            <div class="timeline">
+
+                {% for education in educations %}
+
+                <div class="timeline-item">
+
+                    <span class="date">
+                        {{ education.year }}
+                    </span>
+
+                    <h3>
+                        {{ education.school }}
+                    </h3>
+
+                    <p class="company">
+                        {{ education.degree }}
+                    </p>
+
+                    <p>
+                        {{ education.description }}
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- WORK EXPERIENCE -->
+
+        <section class="section">
+
+            <div class="section-title">
+                <h2>Work Experience</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <div class="timeline">
+
+                {% for experience in experiences %}
+
+                <div class="timeline-item">
+
+                    <span class="date">
+                        {{ experience.year }}
+                    </span>
+
+                    <h3>
+                        {{ experience.position }}
+                    </h3>
+
+                    <p class="company">
+                        {{ experience.company }}
+                    </p>
+
+
+                    {% for project in experience.projects %}
+
+                    <div class="work-project">
+
+                        <h4>
+                            {{ project.name }}
+                        </h4>
+
+                        <p class="project-role">
+                            {{ project.role }}
+                        </p>
+
+                        <ul>
+
+                            {% for item in project.description %}
+
+                            <li>
+                                {{ item }}
+                            </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- INTERNSHIP -->
+
+        <section class="section">
+
+            <div class="section-title">
+                <h2>Internship Experience</h2>
+                <div class="section-line"></div>
+            </div>
+
+
+            <div class="timeline">
+
+                {% for internship in internships %}
+
+                <div class="timeline-item">
+
+                    <span class="date">
+                        {{ internship.year }}
+                    </span>
+
+                    <h3>
+                        {{ internship.position }}
+                    </h3>
+
+                    <p class="company">
+                        {{ internship.company }}
+                    </p>
+
+                    <ul>
+
+                        {% for item in internship.description %}
+
+                        <li>
+                            {{ item }}
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- COMPETITIONS -->
+
+        <section class="section">
+
+            <div class="section-title">
+                <h2>Competition Experience</h2>
+                <div class="section-line"></div>
+            </div>
+
+
+            <div class="project-grid">
+
+                {% for competition in competitions %}
+
+                <div class="project-card">
+
+                    <span class="date">
+                        {{ competition.year }}
+                    </span>
+
+                    <h3>
+                        {{ competition.name }}
+                    </h3>
+
+                    <ul>
+
+                        {% for item in competition.description %}
+
+                        <li>
+                            {{ item }}
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- PROJECTS -->
+
+        <section class="section">
+
+            <div class="section-title">
+                <h2>Projects</h2>
+                <div class="section-line"></div>
+            </div>
+
+
+            <div class="project-grid">
+
+                {% for project in projects %}
+
+                <div class="project-card">
+
+                    <span class="date">
+                        {{ project.year }}
+                    </span>
+
+                    <h3>
+                        {{ project.name }}
+                    </h3>
+
+                    <ul>
+
+                        {% for item in project.description %}
+
+                        <li>
+                            {{ item }}
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+</body>
+
+</html>
